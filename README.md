@@ -2,7 +2,7 @@
 
 A small framework for time series generation.
 
-## simple time series generation
+## Simple Time Series Generation
 
 ```clojure
 (use 'timeseries.core)
@@ -36,7 +36,7 @@ example1-ts
 ;; (10000 9700.0 9397.0 9090.97 ...)
 ```
 
-## slightly more complicated time series generation
+## Slightly More Complicated Time Series Generation
 
 Let's make a slightly more complicated but unrealistic payment
 model with an interest rate that changes based on the principal.
@@ -66,7 +66,7 @@ changes.
 
 ```
 
-## exception handling
+## Exception Handling
 
 What happens if you make a mistake in a step function?
 How will you find it? Let's see. We'll make a step function
@@ -87,7 +87,7 @@ that works fine until the balance drops below 5000.
 ;; Try calling your function like: (f 4704.54)
 ```
 
-## tracing
+## Tracing
 
 Maybe you'd like to see a little more of the process. The
 ts-seq function also takes a trace function. A sample trace
@@ -126,13 +126,14 @@ the return value.
 
 You're not seeing all the results you say? These are lazy-seqs, so
 we need to ask for all the results if we're interested.
+
 ```clojure
 (doall (ts-seq [10000] simple-stop example1-step example-trace))
 ;; ...
 ;; (10000 9700.0 9397.0 9090.97 ...)
 ```
 
-## previous state
+## Previous State
 
 Now that we know about trace functions, let's show how we can pass
 more than just one previous state into the step function. First we
@@ -167,7 +168,7 @@ to previous values. This one should be easy.
 ;; (0 1 1 2 3 5 8 13 21 34 ...)
 ```
 
-## comparing step functions
+## Comparing Step Functions
 
 One more function that should make it easier to compare multiple
 step functions at the same time is ts-compare. Let's take a close
