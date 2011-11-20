@@ -71,6 +71,8 @@ changes.
 What happens if you make a mistake in a step function?
 How will you find it? Let's see. We'll make a step function
 that works fine until the balance drops below 5000.
+You should see an exception thrown that contains enough
+information to duplicate the error.
 
 ```clojure
 (defn example3-step [x]
@@ -81,8 +83,6 @@ that works fine until the balance drops below 5000.
       (/ 1 0))))
 
 (ts-seq [5400] simple-stop example3-step)
-;; ... You should see an exception thrown that contains enough
-;; information to duplicate the error ...
 ;; Divide by zero
 ;; Try calling your function like: (f 4704.54)
 ```
@@ -100,6 +100,8 @@ in example-trace is sent to standard error.
 (ts-seq [10000] simple-stop example1-step example-trace)
 ;; (fn 10000) => 9700.0
 ;; (fn 9700.0) => 9397.0
+;; (fn 9397.0) => 9090.97
+;; (fn 9090.97) => 8781.8797
 ;; ...
 ;; (10000 9700.0 9397.0 9090.97 ...)
 ```
@@ -129,6 +131,10 @@ we need to ask for all the results if we're interested.
 
 ```clojure
 (doall (ts-seq [10000] simple-stop example1-step example-trace))
+;; (fn 10000) => 9700.0
+;; (fn 9700.0) => 9397.0
+;; (fn 9397.0) => 9090.97
+;; (fn 9090.97) => 8781.8797
 ;; ...
 ;; (10000 9700.0 9397.0 9090.97 ...)
 ```
