@@ -9,7 +9,7 @@ A small framework for time series generation.
 (set! *print-length* 10)
 ```
 
-This will be our stop criteria. When it returns true, the sequence will end.
+This will be our stop criteria. When it returns true the sequence will end.
 
 ```clojure
 (defn simple-stop [x]
@@ -17,7 +17,7 @@ This will be our stop criteria. When it returns true, the sequence will end.
 ```
 
 Next we'll define a step function to represent an annual interest rate
-of 12 percent, with a periodic payment of 400 dollars.
+of 12 percent with a periodic payment of 400 dollars.
 
 ```clojure
 (defn example1-step [x]
@@ -25,7 +25,7 @@ of 12 percent, with a periodic payment of 400 dollars.
     (p x)))
 ```
 
-Now we'll make a timeseries with an initial state of [10000], and
+Now we'll make a timeseries with an initial state of [10000] and
 use the stop and step functions defined above.
 
 ```clojure
@@ -40,7 +40,7 @@ example1-ts
 
 Let's make a slightly more complicated but unrealistic payment
 model with an interest rate that changes based on the principal.
-If the principal is over 5000, the we have 12 percent interest
+If the principal is over 5000, then we have 12 percent interest
 annually. If the principal is 5000 or less, then we have 10
 percent interest annually.
 
