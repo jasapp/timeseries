@@ -89,8 +89,9 @@
    Makes a timeseries sequence for each step function and
    compares their values until divergence or the stop condition
    is reached, which ever comes first. If any of the functions
-   diverged then the number of steps required for divergence is returned.
-   If the stop condition is met then nil is returned."
+   diverged then the number of steps required for divergence
+   and the last matching value is returned. If the stop condition
+   is met then nil is returned."
   [initial-state stop-fn fn1 fn2 & more-fns]
   (let [fns (cons fn1 (cons fn2 more-fns))
 	all-ts (map #(ts-seq initial-state stop-fn %) fns)
